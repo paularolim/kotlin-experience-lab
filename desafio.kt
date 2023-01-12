@@ -1,34 +1,34 @@
-enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
+enum class Level { BASIC, MID, ADVANCED }
 
-class Usuario
+class User
 
-data class ConteudoEducacional(val nome: String, val nivel: Nivel, val duracao: Int = 60)
+data class Content(val name: String, val level: Level, val duration: Int = 60)
 
-data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>) {
+data class Formation(val name: String, val contents: List<Content>) {
 
-    val inscritos = mutableListOf<Usuario>()
+    val subscribers = mutableListOf<User>()
     
-    fun matricular(usuario: Usuario) {
-        inscritos.add(usuario)
+    fun subscribe(user: User) {
+        subscribers.add(user)
     }
 }
 
 fun main() {
-    val joe = Usuario()
-    val ana = Usuario()
+    val joe = User()
+    val ana = User()
     
-    val conteudo1 = ConteudoEducacional("Kotlin básico", Nivel.BASICO)
-    val conteudo2 = ConteudoEducacional("Kotlin funções", Nivel.INTERMEDIARIO, 60)
-    val conteudo3 = ConteudoEducacional("Kotlin orientado a objetos", Nivel.INTERMEDIARIO, 80)
-    val conteudo4 = ConteudoEducacional("Desafios com kotlin", Nivel.AVANCADO, 120)
+    val content1 = Content("Kotlin básico", Level.BASIC)
+    val content2 = Content("Kotlin funções", Level.BASIC, 60)
+    val content3 = Content("Kotlin orientado a objetos", Level.MID, 80)
+    val content4 = Content("Desafios com kotlin", Level.ADVANCED, 120)
     
-    val formacao_conteudos = mutableListOf(conteudo1, conteudo2, conteudo3, conteudo4)
-    val formacao = Formacao("Kotlin experience", formacao_conteudos)
+    val formation_contents = mutableListOf(content1, content2, content3, content4)
+    val formation = Formation("Kotlin experience", formation_contents)
     
-    formacao.matricular(joe)
-    formacao.matricular(ana)
+    formation.subscribe(joe)
+    formation.subscribe(ana)
     
-    println(formacao.nome)
-    println(formacao.inscritos)
-    println(formacao.conteudos)
+    println(formation.name)
+    println(formation.subscribers)
+    println(formation.contents)
 }
